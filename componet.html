@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Pierwszy komponent w React.js</title>
+	<script src="https://unpkg.com/react/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone/babel.js"></script>
+</head>
+
+<body>
+<div id="app"></div>
+<div id="left"></div>
+<div id="one"></div>
+<div id="two"></div>
+
+<script type="text/babel">
+function MojKomponent() {
+	return (
+			<div align = "left">
+			<h1>Witaj, świecie!</h1>
+			</div>
+	);
+}
+function PrawyKomponent() {
+	return (
+			<div align = "right">
+			<h1>Tekst po prawej</h1>
+			</div>
+	);
+}
+
+ReactDOM.render(
+	<MojKomponent />,
+	document.getElementById('app')
+);
+
+ReactDOM.render(
+	<PrawyKomponent />,
+	document.getElementById('left')
+);
+
+ReactDOM.render(
+	[<PrawyKomponent />,
+	<MojKomponent />],
+	document.getElementById('one')
+);
+
+const renderTwo = () => (
+	<React.Fragment>
+		<PrawyKomponent />
+		<MojKomponent />
+	</ React.Fragment>
+)
+
+ReactDOM.render(
+	renderTwo(),
+	document.getElementById('two')
+);
+</script>
+</body>
+
+</html>
