@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+<!-- https://typeofweb.com/2017/12/17/podzial-komponenty-react-js/ -->
+
+<head>
+	<meta charset="UTF-8" name="viewport" type="width=width-device, initial-scale=1">
+	<title>Calculator</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+	<script src="https://unpkg.com/react/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone/babel.js"></script>
+</head>
+<style>
+</style>
+
+<body>
+	<div id="app"></div>
+
+<script type="text/babel">
+class App extends React.Component {
+constructor() {
+super();
+this.state = {counter: 0, total: 0, value: 0};
+}
+
+render() {
+return (
+<div className="ui divided container">
+<div><button className="ui button " onClick={this.increment.bind(this)}>+</button></div>
+	<div><button className="ui button" onDoubleClick={this.value.bind(this)} >Summary: {this.state.counter}</button></div>
+		<div><output>Total clicks: {this.state.total}</output></div>
+			<div><output>value clicks: {this.state.value }</output></div>
+				<div><button className="ui button" onClick={this.decrement.bind(this)}>-</button></div>
+			
+			</div>
+);
+}
+
+value() {
+this.setState({
+	value: this.state.value + 1,
+})
+}
+
+increment() {
+this.setState({
+counter: this.state.counter + 1,
+total: this.state.total + 1
+})
+}
+
+decrement() {
+this.setState({
+counter: this.state.counter - 1,
+total: this.state.total + 1
+
+})
+}
+}
+ReactDOM.render(<App />, document.getElementById("app"));
+
+</script>
+</body>
+
+</html>
