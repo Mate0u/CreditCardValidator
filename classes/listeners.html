@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
-<!-- https://typeofweb.com/2017/12/17/podzial-komponenty-react-js/ -->
+<!-- https://typeofweb.com/2018/01/08/interakcja-komponentami-react-js/ -->
 
 <head>
 	<meta charset="UTF-8" name="viewport" type="width=width-device, initial-scale=1">
@@ -10,157 +10,153 @@
 	<script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
 	<script src="https://unpkg.com/babel-standalone/babel.js"></script>
 </head>
-<style>
-</style>
-
 <body>
-	<div id="app"></div>
+<div id="app"></div>
+<script type="text/babel">
 
-	<script type="text/babel">
-
-		class Header extends React.Component{
-	render(){
-		return(
-			<header className="ui menu">
-			<nav className="ui container">
-			<a href="#" className="header item">
-			<img className="logo" src="https://typeofweb.com/wp-content/uploads/2017/08/cropped-typeofweb_logo-04-white-smaller-1-e1504359870362.png"/>Lista kontaktów</a>
-			<div className="header item">
-			<button className="ui button" onClick={() => alert('Kliknięto!')} >Dodaj</button>
-			</div>
-			</nav>
-			</header>
-		);
-	}
+class Header extends React.Component{
+render(){
+	return(
+		<header className="ui menu">
+		<nav className="ui container">
+		<a href="#" className="header item">
+		<img className="logo" src="https://typeofweb.com/wp-content/uploads/2017/08/cropped-typeofweb_logo-04-white-smaller-1-e1504359870362.png"/>Lista kontaktów</a>
+		<div className="header item">
+		<button className="ui button" onClick={() => alert('Kliknięto!')} >Dodaj</button>
+		</div>
+		</nav>
+		</header>
+	);
+}
 }
 class ListContacts extends React.Component{
-	render(){
-		return(
-		<ul className="ui divided list selection">
-		<ContactItem
-		login = "typeofweb1"
-		name = "Lena"
-		department = "JavaScript Developer"
-		/>
-		<ContactItem
-		login = "typeofweb2"
-		name = "Brian"
-		department = "Human Resources"
-		/>
-		<ContactItem
-		login = "typeofweb3"
-		name = "Rick"
-		department = "QA"
-		/>
-		<ContactItem
-		login = "typeofweb4"
-		name = "Morty"
-		department = "Galactical trader"
-		/>
-		<ContactItem
-		login = "typeofweb5"
-		name = "Labtec"
-		/>
-		<ContactItem
-		login = "typeofweb6"
-		name = "Pini"
-		department = "Intermediolan fankulo"
-		/>
-		<ContactItem
-		name = "Zodini"
-		department = "Pandas driver"
-		/>
-		<ContactItem
-		login = "typeofweb7"		
-		department = "Man has no name"
-		/>
-	</ul>
-		);
-	}
+render(){
+	return(
+	<ul className="ui divided list selection">
+	<ContactItem
+	login = "typeofweb1"
+	name = "Lena"
+	department = "JavaScript Developer"
+	/>
+	<ContactItem
+	login = "typeofweb2"
+	name = "Brian"
+	department = "Human Resources"
+	/>
+	<ContactItem
+	login = "typeofweb3"
+	name = "Rick"
+	department = "QA"
+	/>
+	<ContactItem
+	login = "typeofweb4"
+	name = "Morty"
+	department = "Galactical trader"
+	/>
+	<ContactItem
+	login = "typeofweb5"
+	name = "Labtec"
+	/>
+	<ContactItem
+	login = "typeofweb6"
+	name = "Pini"
+	department = "Intermediolan fankulo"
+	/>
+	<ContactItem
+	name = "Zodini"
+	department = "Pandas driver"
+	/>
+	<ContactItem
+	login = "typeofweb7"		
+	department = "Man has no name"
+	/>
+</ul>
+);
+}
 }
 
 class ContactItem extends React.Component {
-	render() {
-		const {login, name, department} = this.props
-		if(login ==='typeofweb7'){
-		const login = "typeofweb2"
-		return(
-			<li className="item">
-			<AvatarItem login={login}/>
-			<DescriptionItem name={name} department={department} />
-			<ButtonPopUp />
-			</li>
-		);
-		}
-		if(login ==='typeofweb3'){
-		return(
-			<li onMouseEnter={() => alert('cos jest nie tak') } className="item">
-			<AvatarItem login={login}/>
-			<DescriptionItem name={name} department={department} />
-			<ButtonPopUp />
-			</li>
-		);
-		} else{
-			return(
-			<li onClick={() => alert('SUPER!')} className="item">
-			<AvatarItem login={login}/>
-			<DescriptionItem name={name} department={department} />
-			</li>
-		);
-		}
+render() {
+	const {login, name, department} = this.props
+	if(login ==='typeofweb7'){
+	const login = "typeofweb2"
+	return(
+		<li className="item">
+		<AvatarItem login={login}/>
+		<DescriptionItem name={name} department={department} />
+		<ButtonPopUp />
+		</li>
+	);
 	}
+	if(login ==='typeofweb3'){
+	return(
+		<li onMouseEnter={() => alert('cos jest nie tak') } className="item">
+		<AvatarItem login={login}/>
+		<DescriptionItem name={name} department={department} />
+		<ButtonPopUp />
+		</li>
+	);
+	} else{
+		return(
+		<li onClick={() => alert('SUPER!')} className="item">
+		<AvatarItem login={login}/>
+		<DescriptionItem name={name} department={department} />
+		</li>
+	);
+	}
+}
 }
 
 class ButtonPopUp extends React.Component{
-	render() {
-		return (
-			<div className="content">
-			<button className="ui button" onClick={this.onClickHandler}>Kotek!</button>
-			</div>
-			);
-	}
-	onClickHandler(){
-		alert("piesek");
-		console.log("piesek i kotek");
-	}
-
+render() {
+	return (
+		<div className="content">
+		<button className="ui button" onClick={this.onClickHandler}>Kotek!</button>
+		</div>
+		);
+}
+onClickHandler(){
+	alert("piesek");
+	console.log("piesek i kotek");
+}
 }
 
 class AvatarItem extends React.Component {
-	render () {
-		const {login = "typeofweb1"} = this.props
-		const imgUrl = `https://api.adorable.io/avatars/55/${login}.png`;
-		return(
-			<img src={imgUrl} className="ui mini rounded image" />
-		);
-	}
+render () {
+	const {login = "typeofweb1"} = this.props
+	const imgUrl = `https://api.adorable.io/avatars/55/${login}.png`;
+	return(
+		<img src={imgUrl} className="ui mini rounded image" />
+	);
 }
+}
+
 class DescriptionItem extends React.Component {
-	render() {
-		const {name="None", department="None"} = this.props
-		return(
-			<div className="content">
-			<h4 className="header">{name}</h4>
-			<div className="description">{department}</div>
-			</div>
-		);
-	}
+render() {
+	const {name="None", department="None"} = this.props
+	return(
+		<div className="content">
+		<h4 className="header">{name}</h4>
+		<div className="description">{department}</div>
+		</div>
+	);
+}
 }
 
 class App extends React.Component {
-	render() {
-		return(
-			<div>
-		<Header />
-		<main className="ui main text container">
-		<ListContacts />
-		</main>
-		</div>
-		);
-	}
+render() {
+	return(
+		<div>
+	<Header />
+	<main className="ui main text container">
+	<ListContacts />
+	</main>
+	</div>
+	);
 }
+}
+
 ReactDOM.render(<App />, document.getElementById("app"));
 </script>
 </body>
-
 </html>

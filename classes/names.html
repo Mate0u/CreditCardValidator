@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl">
+<!-- https://typeofweb.com/2018/01/15/state-react-js-2/ -->
+
+<head>
+	<meta charset="UTF-8" name="viewport" type="width=width-device, initial-scale=1">
+	<title>Input</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+	<script src="https://unpkg.com/react/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone/babel.js"></script>
+</head>
+<style>
+</style>
+
+<body>
+<div id="app"></div>
+<script type="text/babel">
+
+class App extends React.Component {
+
+constructor() {
+super();
+this.state = {
+
+first: " ",
+last: " "
+
+};
+
+}
+renderFirstName(e){
+this.setState({
+first: e.target.value
+});
+}
+
+renderLastName(e){
+this.setState({
+last: e.target.value
+});
+}
+
+render(){
+return(
+	<div>
+	<input type="text" value={this.state.first} onInput={this.renderFirstName.bind(this)} />
+	<input type="text" value={this.state.last} onInput={this.renderLastName.bind(this)} />
+	<output>{this.state.first}</output>
+	<output>{this.state.last}</output>
+	</div>
+);
+}
+}
+ReactDOM.render(<App />, document.getElementById("app"));
+
+</script>
+</body>
+</html>
