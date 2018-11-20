@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pl">
+<!-- https://typeofweb.com/2018/01/18/metody-cyklu-zycia-komponentu-react-js/ -->
+
+<head>
+	<meta charset="UTF-8" name="viewport" type="width=width-device, initial-scale=1">
+	<title>Two components transfer data</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+	<script src="https://unpkg.com/react/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone/babel.js"></script>
+</head>
+<style>
+</style>
+
+<body>
+<div id="app"></div>
+<script type="text/babel">
+
+class App extends React.Component {
+constructor(props) {
+super(props);
+
+this.state = { actualInputValue: 2, valueToOutput: 1};
+}
+
+
+onButtonClickSet() {
+this.setState(state => ({ valueToOutput: state.actualInputValue }));
+}
+valueChange(event) {
+this.setState({actualInputValue: event.target.value});
+}
+
+
+render() {
+return (
+	<div>
+	<input type="number" onChange={this.valueChange.bind(this)} />
+	<button onClick={this.onButtonClickSet.bind(this)}>Send</button>
+	{this.state.valueToOutput && <Child value={this.state.valueToOutput}/>}
+	</div>
+);
+}
+}
+	class Child extends React.Component{
+		constructor (props) {
+		super (props);
+		this.state = {
+			previous: this.props,
+			current: this.props
+		}
+		}
+
+		onButtonClickPlus() {
+		this.setState(state => ({ current: this.state.current + 1 }));
+		}
+		onButtonClickMinus() {
+		this.setState(state => ({ current: this.state.current - 1 }));
+		}
+
+
+		render() {
+			return (
+			<div>
+			<output>{this.state.previous}</output>
+			<button onClick={this.onButtonClickPlus.bind(this)}>Plus</button>
+			<button onClick={this.onButtonClickMinus.bind(this)}>Minus</button>
+			</div>
+		);
+		}
+	}
+
+
+ReactDOM.render(<App />, document.getElementById("app"));
+
+</script>
+</body>
+</html>
