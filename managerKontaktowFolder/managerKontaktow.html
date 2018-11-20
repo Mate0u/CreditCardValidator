@@ -12,9 +12,9 @@
 </head>
 
 <body>
-<div id="app"></div>
+	<div id="app"></div>
 
-<script type="text/babel">
+	<script type="text/babel">
 
 function Header() {
 return (
@@ -25,6 +25,9 @@ return (
 	<div className="header item">
 	<button className="ui button ">Dodaj</button>
 	</div>
+	<div>
+		<img className="ui mini image center" src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/home-icon.png"/>
+	</div>
 	</nav>
 	</header>
 );
@@ -32,21 +35,24 @@ return (
 
 function ListContacts() {
 return (
-	<ul className="ui divided list selection">
+	<ul className="ui divided list selection container">
 		<ContactItem
 		login = "typeofweb1"
 		name = "Lena"
 		department = "JavaScript Developer"
+		text = "Falowanie"
 		/>
 		<ContactItem
 		login = "typeofweb2"
 		name = "Brian"
 		department = "Human Resources"
+		text = "Malowanie"
 		/>
 		<ContactItem
 		login = "typeofweb3"
 		name = "Rick"
 		department = "QA"
+		text = "Blanszowanie"
 		/>
 		<ContactItem
 		login = "typeofweb4"
@@ -61,11 +67,44 @@ return (
 );
 }
 
-function ContactItem({login, name, department}) {
+function NewButtonItem({text}) {
+switch (text) {
+	case 'Falowanie':
 	return (
-		<li className="item">
+		<div>
+		<button className="ui button rounded">{text}</button>
+		</div>
+	);
+	break;
+
+	case 'Malowanie':
+	return (
+		<div className="content">
+		<button className="ui button">{text}</button>
+		</div>
+	);
+	break;
+
+	case 'Blanszowanie':
+	return (
+		<button className="ui button item ">{text}</button>
+	);
+	break;
+	default:
+	return (
+	<div></div>
+	);
+	break;
+
+}
+}
+
+function ContactItem({login, name, department, text}) {
+	return (
+		<li className="ui item container">
 		<AvatarItem login={login}/>
-		<DescriptionItem name={name} department={department} />
+		<DescriptionItem name={name} department={department}/>
+		<NewButtonItem text={text}/>
 		</li>
 	);
 }
@@ -100,4 +139,5 @@ function App() {
 ReactDOM.render(<App />, document.getElementById("app"));
 </script>
 </body>
+
 </html>
