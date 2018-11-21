@@ -21,9 +21,11 @@ class App extends React.Component {
 constructor(props) {
 super(props);
 
-this.state = { actualInputValue: 2, valueToOutput: 1};
+this.state = { 
+	actualInputValue: null,
+	valueToOutput: null
+	};
 }
-
 
 onButtonClickSet() {
 this.setState(state => ({ valueToOutput: state.actualInputValue }));
@@ -31,7 +33,6 @@ this.setState(state => ({ valueToOutput: state.actualInputValue }));
 valueChange(event) {
 this.setState({actualInputValue: event.target.value});
 }
-
 
 render() {
 return (
@@ -47,30 +48,37 @@ return (
 		constructor (props) {
 		super (props);
 		this.state = {
-			previous: this.props,
-			current: this.props
+			previous: Number(this.props),
+			current: Number(this.props)
+		};
 		}
+
+		componentWillReceiveProps(nextProps) {
+			if (nextProps.value != this.state.fromParent) {
+			this.setState({
+				previous: Number(nextProps.value),
+				current: Number(nextProps.value),
+			})
+			}
 		}
 
 		onButtonClickPlus() {
-		this.setState(state => ({ current: this.state.current + 1 }));
+		this.setState({ previous: this.state.previous + 1 });
 		}
 		onButtonClickMinus() {
-		this.setState(state => ({ current: this.state.current - 1 }));
+		this.setState({ previous: this.state.previous - 1 });
 		}
-
 
 		render() {
 			return (
 			<div>
-			<output>{this.state.previous}</output>
+			<output>Output:{this.state.previous}</output>
 			<button onClick={this.onButtonClickPlus.bind(this)}>Plus</button>
 			<button onClick={this.onButtonClickMinus.bind(this)}>Minus</button>
 			</div>
 		);
 		}
 	}
-
 
 ReactDOM.render(<App />, document.getElementById("app"));
 
